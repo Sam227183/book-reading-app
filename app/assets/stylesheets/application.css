@@ -8,3 +8,36 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+body {
+  background-color: #f8f9fa;  
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 1.5rem;
+}
+
+.brand-title {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+}
+
+.genre-programming { background-color: #0d6efd; color: white;}
+.genre-history     { background-color: #fd7e14; color: white; }
+.genre-fiction     { background-color: #6f42c1; color: white; }
+.genre-science     { background-color: #20c997; color: white; }
+.genre-mystery     { background-color: #dc3545; color: white; }
+.genre-etc         { background-color: #eda1e6; color: white; }
+
+.status-want_to_read { background-color: #17bcf3; color: white; }
+.status-reading      { background-color: #17ef66; color: black; }
+.status-finished     { background-color: #ed3283; color: white; }
