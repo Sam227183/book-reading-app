@@ -16,7 +16,7 @@
           <div class="card-body">
             <h6><%= link_to review.book.title, book_path(review.book) %></h6>
             <div class="d-flex justify-content-between">
-              <span class="badge bg-primary"><%= review.status %></span>
+              <span class="badge status-<%= review.status %>"><%= review.status %></span>
               <span class="text-muted">Rating: <%= review.rating %> / 5</span>
             </div>
             <p class="mt-2 mb-0"><%= review.body %></p>
