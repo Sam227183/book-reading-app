@@ -1,0 +1,3 @@
+class CoverUploader < Shrine
+  
+end
