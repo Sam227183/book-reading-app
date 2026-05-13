@@ -13,6 +13,11 @@
     <%= f.label :genre, class: "form-label" %>
     <%= f.select :genre, Book.genres.keys.map { |g| [g.capitalize, g] }, { prompt: "Select a genre" }, class: "form-select" %>
   </div>
+  <div class="mb-3">
+    <%= f.label :bookcover, class: "form-label" %>
+    <%= f.hidden_field :bookcover, value: @book.cached_bookcover_data %>
+    <%= f.file_field :bookcover, class: "form-control", accept: "image/*" %>
+  </div>
 
   <%= f.submit "Add Book", class: "btn btn-primary"%>
 <% end %>
