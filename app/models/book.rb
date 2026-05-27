@@ -1,8 +1,16 @@
 class Book < ApplicationRecord
-  CoverUploader::Attachment(:bookcover)
+  include CoverUploader::Attachment(:bookcover)
 
+  after_commit :create_cover_derivatives, on: [:create, :update]
+  
   has_many :reviews
   has_many :users, through: :reviews
 
   enum :genre, { programming: 0, history: 1, fiction: 2, science: 3, mystery: 4, etc: 5 }
+
+  private
+
+  def create_cover_derivatives
+    bookcover_attacher.create_derivatives if bookcover_attacher.stored?
+  end
 end
