@@ -1,8 +1,8 @@
 class Book < ApplicationRecord
   include CoverUploader::Attachment(:bookcover)
 
-  after_commit :create_cover_derivatives, on: [:create, :update]
-  
+  after_commit :create_cover_derivatives, on: [ :create, :update ]
+
   has_many :reviews
   has_many :users, through: :reviews
 
@@ -11,6 +11,9 @@ class Book < ApplicationRecord
   private
 
   def create_cover_derivatives
-    bookcover_attacher.create_derivatives if bookcover_attacher.stored?
+    if bookcover_attacher.stored?
+      bookcover_attacher.create_derivatives
+      update_column(:bookcover_data, bookcover_attacher.column_data)
+    end
   end
 end
