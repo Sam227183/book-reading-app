@@ -5,7 +5,8 @@
     <% end %>
     <h1 class="mb-1"><%= @book.title %></h1>
     <p class="text-muted mb-1"><%= @book.author %></p>
-    <span class="badge genre-<%= @book.genre %> mb-4"><%= @book.genre %></span>
+    <span class="badge genre-<%= @book.genre %> mb-4"><%= @book.genre %></span><br>
+    <%= link_to "Edit Cover", edit_book_path(@book), class: "btn btn-outline-primary btn-sm mb-3" %>
 
     <h4 class="mt-4">Reviews</h4>
 

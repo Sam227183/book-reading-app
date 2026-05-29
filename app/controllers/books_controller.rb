@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create ]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update ]
   def index
     @books = Book.includes(:reviews).all
   end
@@ -18,6 +18,19 @@ class BooksController < ApplicationController
       redirect_to @book
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to @book
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
