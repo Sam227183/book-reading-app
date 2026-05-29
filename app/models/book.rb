@@ -10,6 +10,7 @@ class Book < ApplicationRecord
 
   private
 
+  # Add thumbnail resolution images
   def create_cover_derivatives
     if bookcover_attacher.stored?
       bookcover_attacher.create_derivatives
