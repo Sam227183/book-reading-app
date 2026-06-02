@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create, :edit, :update ]
-  before_action :require_admin!, only: [ :new, :create, :edit, :update ]
+  before_action :require_admin!, only: [ :new, :create, :edit, :update, :destroy ]
   def index
     @books = Book.includes(:reviews).all
   end
@@ -22,8 +21,27 @@ class BooksController < ApplicationController
     end
   end
 
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to @book
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path, notice: "Book deleted."
+  end
+
   private
   def book_params
-    params.require(:book).permit(:title, :author, :genre)
+    params.require(:book).permit(:title, :author, :genre, :bookcover)
   end
 end

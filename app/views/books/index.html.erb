@@ -11,6 +11,12 @@
           </h5>
           <p class="card-text text-muted"><%= book.author %></p>
           <span class="badge genre-<%= book.genre %>"><%= book.genre %></span>
+          <% if current_user&.admin? %>
+            <div class="mt-2">
+              <%= link_to "Edit", edit_book_path(book), class: "btn btn-outline-primary btn-sm" %>
+              <%= button_to "Delete", book_path(book), method: :delete, class: "btn btn-outline-danger btn-sm", form: { data: { turbo_confirm: "Are you sure?" } } %>
+            </div>
+          <% end %>      
         </div>
       </div>
     </div>
