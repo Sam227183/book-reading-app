@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [ :new, :create ]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update ]
+  before_action :require_admin!, only: [ :new, :create, :edit, :update ]
   def index
     @books = Book.includes(:reviews).all
   end
